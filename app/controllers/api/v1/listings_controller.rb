@@ -9,10 +9,12 @@ class Api::V1::ListingsController < ApplicationController
   end
 
   def show
+    binding.pry
     listing = Listing.find(params[:id])
 
     render json: listing, serializer: ListingShowSerializer
-  rescue StandardError
+  rescue StandardError => e
+    binding.pry
     render json: { message: 'Unfortunately the listing could not be found' }, status: 422
   end
 
